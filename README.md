@@ -37,7 +37,7 @@ docker run -d \
     -e "MYSQL_PASSWORD=mypass" \
     -e "MYSQL_DATABASE=mydb" \
     -e "UID=$(id -u)" \
-    --restart=always
+    --restart=always \
     --name myname \
     kevgl/lamp7
 ```
