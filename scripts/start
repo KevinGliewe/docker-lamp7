@@ -45,11 +45,16 @@ then
 
 
 
-    if [ -f /var/mysql/setup.sh ]
+    if [ -f /var/lib/mysql/setup.sh ]
     then
-        bash /var/mysql/setup.sh
+        bash /var/lib/mysql/setup.sh
     fi
     echo "OK"
+fi
+
+if [ -f /var/lib/mysql/startup.sh ]
+then
+    bash /var/lib/mysql/startup.sh
 fi
 
 tail -f /var/log/apache2/error.log -f /var/log/apache2/access.log

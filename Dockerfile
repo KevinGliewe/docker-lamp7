@@ -16,9 +16,17 @@ EXPOSE  80
 # Install Misc.
 RUN     apt-get --yes update && \
         apt-get --yes upgrade && \
-        apt-get --yes install sudo nano curl git xclip && \
+        apt-get --yes install sudo nano curl git xclip apt-transport-https && \
         curl https://getmic.ro | bash && \ 
         mv ./micro /bin
+
+# Install PowerShell
+RUN     curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
+        curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list && \
+        apt-get update && \
+        apt-get install -y powershell && \
+        pwsh -c Install-Package psake -Force && \
+        chmod -R 777 /root
 
 ADD    ./scripts/mysql.cnf  /etc/mysql/my.cnf
 
